@@ -1,9 +1,9 @@
 import pygame
-from game_object import GameObject
+from UNO.engine.game_object import GameObject
 
 class Button(GameObject):
     def __init__(self, x, y, width, height, text, font, text_color, button_color, callback):
-        super().__init__(x, y, width, height)
+        super().__init__(text, x, y, width, height)
         self.text = text
         self.font = font
         self.text_color = text_color
@@ -11,7 +11,6 @@ class Button(GameObject):
         self.callback = callback
 
     def draw(self, surface):
-        pygame.draw.rect(surface, self.button_color, self.rect)
         rendered_text = self.font.render(self.text, True, self.text_color)
         text_rect = rendered_text.get_rect(center=self.rect.center)
         surface.blit(rendered_text, text_rect)

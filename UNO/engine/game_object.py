@@ -14,10 +14,10 @@ class Listener:
                 handler(*args, **kwargs)
 
 class GameObject(Listener):
-    def __init__(self, name, position, components=None):
+    def __init__(self, name, x, y, width, height, components=None):
         super().__init__()
         self.name = name
-        self.position = position
+        self.rect = pygame.Rect(x, y, width, height)
         self.components = components if components else []
 
     def on_clicked(self):

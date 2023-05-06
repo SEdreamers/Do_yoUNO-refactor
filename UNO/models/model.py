@@ -1,5 +1,6 @@
 import json
 
+
 class Model:
     def __init__(self, data_file='game_data.json'):
         self.data_file = data_file
