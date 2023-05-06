@@ -1,4 +1,4 @@
-from engine.scene import Scene
+from UNO.engine.scene import Scene
 
 class Lobby(Scene):
     def __init__(self):
