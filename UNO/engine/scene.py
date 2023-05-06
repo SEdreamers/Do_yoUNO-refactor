@@ -2,8 +2,8 @@ class Scene:
     def __init__(self):
         pass
     
-    def run():
+    def run(self):
         pass
     
-    def draw():
+    def draw(self):
         pass
