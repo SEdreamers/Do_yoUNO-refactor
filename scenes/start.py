@@ -1,6 +1,5 @@
 import pygame
 from engine.scene import Scene
-from models.model import Model
 from engine.button import Button
 from lobby import Lobby
 from story import Story
@@ -10,7 +9,6 @@ class Start(Scene):
     def __init__(self):
         pygame.init()
         super().__init__()
-        self.model = Model()
         self.running = True
         self.menu_flag = 0
         self.background_color = (0, 0, 0)

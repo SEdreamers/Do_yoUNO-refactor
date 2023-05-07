@@ -36,37 +36,30 @@ class Setting(Scene):
                                 self.model.screen_width / 4, self.model.screen_width / 16, "Exit", font,
                                 self.default_color, None)
 
-        self.size1 = Button(self.model.screen_width / 20, self.model.screen_height / 4,
-                            self.model.screen_width / 4, self.model.screen_width / 16, "size1", screen_font,
+        self.size1 = Button(self.model.screen_width / 10, self.model.screen_height / 4,
+                            self.model.screen_width / 30, self.model.screen_width / 60, "size1", screen_font,
                             self.default_color, None)
 
-        self.size2 = Button(self.model.screen_width / 5, self.model.screen_height / 4,
-                            self.model.screen_width / 4, self.model.screen_width / 16, "size2", screen_font,
+        self.size2 = Button(self.model.screen_width / 3, self.model.screen_height / 4,
+                            self.model.screen_width / 30, self.model.screen_width / 60, "size2", screen_font,
                             self.default_color, None)
 
-        self.size3 = Button(self.model.screen_width / 2.5, self.model.screen_height / 4,
-                            self.model.screen_width / 4, self.model.screen_width / 16, "size3", screen_font,
+        self.size3 = Button(self.model.screen_width / 1.7, self.model.screen_height / 4,
+                            self.model.screen_width / 30, self.model.screen_width / 60, "size3", screen_font,
                             self.default_color, None)
 
         self.size4 = Button(self.model.screen_width / 1.2, self.model.screen_height / 4,
-                            self.model.screen_width / 4, self.model.screen_width / 16, "size4", screen_font,
+                            self.model.screen_width / 30, self.model.screen_width / 60, "size4", screen_font,
                             self.default_color, None)
-
+        self.button_list = [self.blind_text, self.default_text, self.back_text, self.exit_text,
+                            self.size1, self.size2, self.size3, self.size4]
     def run(self):
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                self.title.handle_event(event)
-                self.blind_text.handle_event(event)
-                self.default_text.handle_event(event)
-                self.back_text.handle_event(event)
-                self.exit_text.handle_event(event)
-                self.size1.handle_event(event)
-                self.size2.handle_event(event)
-                self.size3.handle_event(event)
-                self.size4.handle_event(event)
-
+                for button in self.button_list:
+                    button.handle_event(event)
                 if event.type == pygame.KEYDOWN:
                     self.on_key_down(event)
             self.draw(self.screen)
@@ -79,32 +72,13 @@ class Setting(Scene):
         mouse_pos = pygame.mouse.get_pos()
         # Update button colors based on menu_flag and mouse position
         self.title.color = self.default_color
-        self.blind_text.color = self.transparent_color \
-            if self.blind_text.rect.collidepoint(mouse_pos) or self.menu_flag == 0 else self.default_color
-        self.default_text.color = self.transparent_color \
-            if self.default_text.rect.collidepoint(mouse_pos) or self.menu_flag == 1 else self.default_color
-        self.back_text.color = self.transparent_color \
-            if self.back_text.rect.collidepoint(mouse_pos) or self.menu_flag == 2 else self.default_color
-        self.exit_text.color = self.transparent_color \
-            if self.exit_text.rect.collidepoint(mouse_pos) or self.menu_flag == 3 else self.default_color
-        self.size1.color = self.transparent_color \
-            if self.size1.rect.collidepoint(mouse_pos) or self.menu_flag == 4 else self.default_color
-        self.size2.color = self.transparent_color \
-            if self.size2.rect.collidepoint(mouse_pos) or self.menu_flag == 5 else self.default_color
-        self.size3.color = self.transparent_color \
-            if self.size3.rect.collidepoint(mouse_pos) or self.menu_flag == 6 else self.default_color
-        self.size4.color = self.transparent_color \
-            if self.size4.rect.collidepoint(mouse_pos) or self.menu_flag == 7 else self.default_color
+        for index, button in enumerate(self.button_list):
+            button.color = self.transparent_color if button.rect.collidepoint(mouse_pos) or self.menu_flag == index \
+                else self.default_color
         # Draw buttons
         self.title.draw(screen)
-        self.default_text.draw(screen)
-        self.blind_text.draw(screen)
-        self.back_text.draw(screen)
-        self.size1.draw(screen)
-        self.size2.draw(screen)
-        self.size3.draw(screen)
-        self.size4.draw(screen)
-
+        for button in self.button_list:
+            button.draw(screen)
         pygame.display.flip()
 
     def on_mouse_button_down(self, event):
@@ -118,15 +92,8 @@ class Setting(Scene):
         self.menu_flag %= 8
 
         # Update button hovered status based on menu_flag
-        self.title.hovered = (self.menu_flag == 0)
-        self.blind_text.hovered = (self.menu_flag == 1)
-        self.default_text.hovered = (self.menu_flag == 2)
-        self.back_text.hovered = (self.menu_flag == 3)
-        self.size1.hovered = (self.menu_flag == 4)
-        self.size2.hovered = (self.menu_flag == 5)
-        self.size3.hovered = (self.menu_flag == 6)
-        self.size4.hovered = (self.menu_flag == 7)
-
+        for index, button in enumerate(self.button_list):
+            button.hovered = (self.menu_flag == index)
 
 if __name__ == '__main__':
     main_scene = Setting()
