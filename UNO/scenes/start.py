@@ -5,8 +5,6 @@ from UNO.engine.button import Button
 from lobby import Lobby
 from story import Story
 from settings import Setting
-# from scenes.story_map import StoryMapScene
-# from scenes.settings import SettingsScene
 
 class Start(Scene):
     def __init__(self):
