@@ -1,6 +1,13 @@
+import pygame
 class Game:
     def __init__(self):
-        pass
+        self.running = True 
     
     def start():
-        pass
+        while self.running:
+            pygame.init()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.save_game() 
+                    self.running = False
+        
