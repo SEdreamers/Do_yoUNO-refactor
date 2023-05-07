@@ -1,4 +1,4 @@
-from UNO.engine.game_object import GameObject
+from engine.game_object import GameObject
 
 class Card(GameObject):
     def __init__(self, value, color, position, components=None):

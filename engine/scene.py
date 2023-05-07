@@ -1,5 +1,5 @@
 import pygame
-from UNO.engine.event import Event, EventManager
+from engine.event import EventManager
 
 class Scene(EventManager):
     def __init__(self):

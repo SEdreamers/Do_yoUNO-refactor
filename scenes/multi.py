@@ -1,10 +1,10 @@
-from UNO.engine.scene import Scene
-from UNO.engine.sprites import Sprite
+from engine.scene import Scene
 
 class Lobby(Scene):
     def __init__(self):
         pass
     
+    @override
     def run(self):
         pass
     

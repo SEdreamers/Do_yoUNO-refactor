@@ -1,4 +1,4 @@
-from UNO.engine.scene import Scene
+from engine.scene import Scene
 
 
 class Story(Scene):

@@ -1,7 +1,7 @@
 import pygame
-from UNO.engine.scene import Scene
-from UNO.models.model import Model
-from UNO.engine.button import Button
+from engine.scene import Scene
+from models.model import Model
+from engine.button import Button
 from lobby import Lobby
 from story import Story
 from settings import Setting

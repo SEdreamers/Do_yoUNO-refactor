@@ -1,5 +1,5 @@
 import random
-from UNO.engine.game_object import Listener
+from engine.game_object import Listener
 from card import Card
 
 class Deck(Listener):
