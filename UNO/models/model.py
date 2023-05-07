@@ -25,9 +25,9 @@ class Model:
         data = {
             'color_blind_mode': self.color_blind_mode,
             'screen_width': self.screen_width,
-            'screen_height': self.screen_height
-            'total_volume': self.total_volume 
-            'background_volume': self.background_volume 
+            'screen_height': self.screen_height,
+            'total_volume': self.total_volume,
+            'background_volume': self.background_volume,
             'player_numbers': self.player_numbers 
         }
         with open(self.data_file, 'w') as game_file:
