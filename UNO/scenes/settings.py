@@ -1,7 +1,7 @@
 from UNO.engine.scene import Scene
 
 
-class Lobby(Scene):
+class Setting(Scene):
     def __init__(self):
         pass
 

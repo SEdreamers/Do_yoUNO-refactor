@@ -7,9 +7,8 @@ class Scene(EventManager):
 
         # Subscribe event handlers
         self.subscribe(pygame.MOUSEBUTTONDOWN, self.on_mouse_button_down)
-        self.subscribe(pygame.MOUSEBUTTONUP, self.on_mouse_button_up)
         self.subscribe(pygame.KEYDOWN, self.on_key_down)
-        self.subscribe(pygame.KEYUP, self.on_key_up)
+
     def run(self, event):
         # read event and create event object
         pass
