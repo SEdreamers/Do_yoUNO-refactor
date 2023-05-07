@@ -80,15 +80,7 @@ class Start(Scene):
         pygame.display.flip()
 
     def on_mouse_button_down(self, event):
-        mouse_pos = event.pos
-        if self.single_player_button.rect.collidepoint(mouse_pos):
-            lobby = Lobby()
-        elif self.story_mode_button.rect.collidepoint(mouse_pos):
-            story = Story()
-        elif self.settings_button.rect.collidepoint(mouse_pos):
-            setting = Setting()
-        elif self.exit_button.rect.collidepoint(mouse_pos):
-            self.running = False
+        pass
 
     def on_key_down(self, event):
         if event.key == pygame.K_UP:

@@ -38,8 +38,8 @@ class GameObject(Listener):
                 if component.collidepoint(x, y):
                     self.on_hover()
 
-    def update(self):
-        pass
+    def update(self, x, y, width, height):
+        self.rect = pygame.Rect(x, y, width, height)
 
     def draw(self, surface):
         for component in self.components:
