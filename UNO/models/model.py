@@ -1,12 +1,14 @@
 import json
 
-
 class Model:
     def __init__(self, data_file='game_data.json'):
         self.data_file = data_file
         self.color_blind_mode = False
         self.screen_width = 800
         self.screen_height = 600
+        self.total_volume = 0.3
+        self.background_volume = 0.3
+        self.player_numbers = 3
         self.load_data()
 
     def load_data(self):
@@ -24,6 +26,9 @@ class Model:
             'color_blind_mode': self.color_blind_mode,
             'screen_width': self.screen_width,
             'screen_height': self.screen_height
+            'total_volume': self.total_volume 
+            'background_volume': self.background_volume 
+            'player_numbers': self.player_numbers 
         }
         with open(self.data_file, 'w') as game_file:
             json.dump(data, game_file)
