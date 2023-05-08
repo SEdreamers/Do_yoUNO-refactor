@@ -2,7 +2,7 @@ import json
 
 class Model:
     def __init__(self):
-        self.game_data_path = "models/game_data.json"
+        self.game_data_path = "../models/game_data.json"
         self.color_blind_mode = False
         self.screen_width = 800
         self.screen_height = 600

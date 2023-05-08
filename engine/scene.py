@@ -15,3 +15,6 @@ class Scene(EventManager):
     def draw(self, screen):
         # Draw the scene
         pass
+    def change(self):
+        # scene 바꿔주기
+        pass

@@ -1,7 +1,6 @@
 import pygame
 from engine.game_object import GameObject
 
-
 class Button(GameObject):
     def __init__(self, x, y, width, height, text, font, color, callback):
         super().__init__(text, x, y, width, height)
@@ -19,10 +18,8 @@ class Button(GameObject):
     def update(self, x, y, width, height, font):
         super().update(x, y, width, height)
         self.font = font
-    def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if self.rect.collidepoint(event.pos):
-                self.callback()
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RETURN and self.hovered:
-                self.callback()
+    # Override
+    def on_clicked(self):
+        pass
+    def on_hover(self):
+        pass

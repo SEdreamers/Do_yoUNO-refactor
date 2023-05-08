@@ -23,3 +23,6 @@ class Card(GameObject):
             return self.value
         else:
             return None
+    def on_clicked(self):
+        # 함수 정의
+        pass
