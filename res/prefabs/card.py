@@ -1,8 +1,8 @@
-from engine.game_object import GameObject
+from engine.sprites import Sprite
 
-class Card(GameObject):
-    def __init__(self, value, color, position, components=None):
-        super().__init__(name, position, components)
+class Card(Sprite):
+    def __init__(self, value, color, image_path, position):
+        super().__init__(image_path, position)
         self.value = value
         self.color = color
 

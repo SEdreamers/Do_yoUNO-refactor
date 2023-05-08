@@ -1,8 +1,8 @@
 import random
-from engine.game_object import Listener
+from engine.sprites import Sprite
 from card import Card
 
-class Deck(Listener):
+class Deck(Sprite):
     def __init__(self):
         super().__init__()
         self.cards = self.generate_deck()

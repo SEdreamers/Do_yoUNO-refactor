@@ -2,7 +2,7 @@ import pygame
 from engine.scene import Scene
 from models.model import Model
 from engine.button import Button
-class Setting(Scene):
+class Settings(Scene):
     def __init__(self):
         pygame.init()
         super().__init__()
