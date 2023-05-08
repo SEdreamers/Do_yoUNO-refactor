@@ -1,15 +1,3 @@
-class Event:
-    def __init__(self, type, **attributes):
-        self.type = type
-        self.attributes = attributes
-
-    def __getattr__(self, attr):
-        if attr in self.attributes:
-            return self.attributes[attr]
-        else:
-            raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{attr}'")
-
-
 class EventManager:
     def __init__(self):
         self.listeners = {}
