@@ -3,7 +3,7 @@ class Game:
     def __init__(self):
         self.running = True 
     
-    def start():
+    def start(self):
         while self.running:
             pygame.init()
             for event in pygame.event.get():
