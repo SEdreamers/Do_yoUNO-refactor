@@ -1,5 +1,5 @@
-from game import Game
+from scenes.lobby import Lobby
 
 if __name__ == '__main__':
-    game = Game()
-    game.start()
+    UNO = Lobby()
+    UNO.run()
