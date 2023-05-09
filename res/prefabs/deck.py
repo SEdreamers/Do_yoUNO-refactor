@@ -2,6 +2,7 @@ import random
 from engine.sprites import Sprite
 from card import Card
 
+
 class Deck(Sprite):
     def __init__(self):
         super().__init__()

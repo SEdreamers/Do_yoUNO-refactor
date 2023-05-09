@@ -1,4 +1,3 @@
-import pygame
 from engine.game_object import GameObject
 
 class Button(GameObject):

@@ -1,7 +1,6 @@
 import pygame
 
 from engine.button import Button
-from engine.event_manager import EventManager
 from game import Game
 from scenes.story import Story
 import scenes.settings as sett
@@ -77,8 +76,6 @@ class Size(Button):
     def on_clicked(self):
         self.model.screen_width = self.size_list[self.size - 1][0]
         self.model.screen_height = self.size_list[self.size - 1][1]
-        print(f"New screen size: {self.model.screen_width}x{self.model.screen_height}")
-        print(self.size)
         self.model.save_data()
         self.screen = pygame.display.set_mode((self.model.screen_width, self.model.screen_height))
 

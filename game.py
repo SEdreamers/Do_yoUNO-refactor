@@ -1,13 +1,18 @@
 import pygame
 class Game:
     def __init__(self):
-        self.running = True 
-    
-    def start(self):
+        pygame.init()
+        self.running = True
+    def run(self):
         while self.running:
-            pygame.init()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.save_game() 
-                    self.running = False
-        
+            self.running = self.handle_events()
+            self.update()
+            self.render()
+
+    def handle_events(self):
+        pass
+    def update(self):
+        pass
+    def render(self):
+        pass
+

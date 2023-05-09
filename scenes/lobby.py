@@ -4,7 +4,6 @@ import res.prefabs.button as button
 
 class Lobby(Scene):
     def __init__(self):
-        pygame.init()
         super().__init__()
         self.running = True
         self.menu_flag = 0
@@ -38,7 +37,6 @@ class Lobby(Scene):
         self.button_list = [self.game_title, self.single_player_button, self.story_mode_button, self.settings_button,
                             self.exit_button]
 
-
     def run(self):
         while self.running:
             for event in pygame.event.get():
@@ -66,7 +64,7 @@ class Lobby(Scene):
         elif event.key == pygame.K_DOWN:
             self.menu_flag += 1
         elif event.key == pygame.K_RETURN:
-            self.button_list[self.menu_flag].on_clicked()
+            self.button_list[self.menu_flag + 1].on_clicked()
         self.menu_flag %= 4
 
         # Update button hovered status based on menu_flag

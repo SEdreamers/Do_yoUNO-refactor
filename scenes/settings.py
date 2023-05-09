@@ -4,7 +4,6 @@ import res.prefabs.button as button
 
 class Settings(Scene):
     def __init__(self):
-        pygame.init()
         super().__init__()
         self.running = True
         self.background_color = (0, 0, 0)

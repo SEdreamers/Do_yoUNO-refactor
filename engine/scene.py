@@ -3,6 +3,7 @@ from models.model import Model
 from engine.event_manager import EventManager
 class Scene():
     def __init__(self):
+        pygame.init()
         self.model = Model()
         self.event_manager = EventManager()
         # Subscribe event handlers
@@ -32,10 +33,8 @@ class Scene():
         # scene 바꿔주기
         pass
 
-    def on_mouse_button_down(self, event, button_list):
-        for butt in button_list:
-            if butt.rect.collidepoint(event.pos):
-                butt.on_clicked()
+    def on_mouse_button_down(self, event):
+        pass
 
     def on_key_down(self):
         pass
