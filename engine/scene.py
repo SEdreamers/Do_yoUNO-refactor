@@ -1,10 +1,11 @@
 import pygame
-from models.model import Model
 from engine.event_manager import EventManager
-class Scene():
-    def __init__(self):
+
+
+class Scene:
+    def __init__(self, model):
         pygame.init()
-        self.model = Model()
+        self.model = model
         self.event_manager = EventManager()
         # Subscribe event handlers
         self.event_manager.subscribe(pygame.MOUSEBUTTONDOWN, self.on_mouse_button_down)

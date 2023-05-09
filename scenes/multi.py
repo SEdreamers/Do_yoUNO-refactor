@@ -1,7 +1,7 @@
 from engine.scene import Scene
 
 class Lobby(Scene):
-    def __init__(self):
+    def __init__(self, model):
         pass
     
     @override

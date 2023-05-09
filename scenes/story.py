@@ -3,8 +3,8 @@ from engine.scene import Scene
 
 
 class Story(Scene):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, model):
+        super().__init__(model)
         self.screen = pygame.display.set_mode((self.model.screen_width, self.model.screen_height))
         self.background = (0, 0, 255)
         self.running = True

@@ -3,8 +3,8 @@ from engine.scene import Scene
 import res.prefabs.button as button
 
 class Lobby(Scene):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, model):
+        super().__init__(model)
         self.running = True
         self.menu_flag = 0
         self.background_color = (0, 0, 0)
@@ -15,23 +15,23 @@ class Lobby(Scene):
         pygame.display.set_caption("Uno Game")
         center = self.screen.get_rect().centerx
         # create buttons
-        self.game_title = button.Button("Uno Game", center * 0.75, self.model.screen_height // 12,
+        self.game_title = button.Button("Uno Game", model, center * 0.75, self.model.screen_height // 12,
                                         self.model.screen_width / 4, self.model.screen_width / 16,
                                         font, self.default_color)
-        self.single_player_button = button.SinglePlayer("Single Play", center * 0.75,
+        self.single_player_button = button.SinglePlayer("Single Play", model, center * 0.75,
                                                         int(self.model.screen_height * 0.3),
                                                         self.model.screen_width / 4, self.model.screen_width / 16,
                                                         font, self.default_color)
 
-        self.story_mode_button = button.StoryMode("Story Mode", center * 0.75, int(self.model.screen_height * 0.47),
-                                                  self.model.screen_width / 4, self.model.screen_width / 16, font,
-                                                  self.default_color)
+        self.story_mode_button = button.StoryMode("Story Mode", model, center * 0.75,
+                                                  int(self.model.screen_height * 0.47), self.model.screen_width / 4,
+                                                  self.model.screen_width / 16, font, self.default_color)
 
-        self.settings_button = button.Settings("Settings", center * 0.75, int(self.model.screen_height * 0.64),
+        self.settings_button = button.Settings("Settings", model, center * 0.75, int(self.model.screen_height * 0.64),
                                                self.model.screen_width / 4, self.model.screen_width / 16, font,
                                                self.default_color)
 
-        self.exit_button = button.Exit("Exit", center * 0.75, int(self.model.screen_height * 0.81),
+        self.exit_button = button.Exit("Exit", model, center * 0.75, int(self.model.screen_height * 0.81),
                                        self.model.screen_width / 4, self.model.screen_width / 16, font,
                                        self.default_color)
         self.button_list = [self.game_title, self.single_player_button, self.story_mode_button, self.settings_button,
@@ -73,7 +73,3 @@ class Lobby(Scene):
         self.settings_button.hovered = (self.menu_flag == 2)
         self.exit_button.hovered = (self.menu_flag == 3)
 
-
-if __name__ == '__main__':
-    main_scene = Lobby()
-    main_scene.run()

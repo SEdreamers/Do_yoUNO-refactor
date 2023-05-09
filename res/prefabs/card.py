@@ -1,8 +1,13 @@
 from engine.sprites import Sprite
 
+
 class Card(Sprite):
-    def __init__(self, value, color, image_path, position):
-        super().__init__(image_path, position)
+    def __init__(self, model, value, color, x, y, width, height):
+        if self.model.color_blind_mode:
+            image_path = f'res/images/cards/color_blind_mode/{color}_{value}'
+        else:
+            image_path = f'res/images/cards/default_mode/{color}_{value}'
+        super().__init__(image_path, model, x, y, width, height)
         self.value = value
         self.color = color
 

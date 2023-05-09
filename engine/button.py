@@ -1,8 +1,8 @@
 from engine.game_object import GameObject
 
 class Button(GameObject):
-    def __init__(self, text, x, y, width, height, font, color):
-        super().__init__(x, y, width, height)
+    def __init__(self, text, model, x, y, width, height, font, color):
+        super().__init__(model, x, y, width, height)
         self.text = text
         self.font = font
         self.color = color
