@@ -17,6 +17,8 @@ class Button(GameObject):
     def update(self, x, y, width, height, font):
         super().update(x, y, width, height)
         self.font = font
+
+
     # Override
     def on_clicked(self):
         pass

@@ -35,39 +35,25 @@ class Lobby(Scene):
         self.exit_button = button.Exit("Exit", center * 0.75, int(self.model.screen_height * 0.81),
                                        self.model.screen_width / 4, self.model.screen_width / 16, font,
                                        self.default_color)
-        self.button_list = [self.single_player_button, self.story_mode_button, self.settings_button, self.exit_button]
+        self.button_list = [self.game_title, self.single_player_button, self.story_mode_button, self.settings_button,
+                            self.exit_button]
 
 
     def run(self):
-
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                    self.on_mouse_button_down(event)
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        self.event_manager.emit(event)
                 elif event.type == pygame.KEYDOWN:
-                    self.on_key_down(event)
+                    self.event_manager.emit(event)
 
-            self.draw(self.screen)
+            self.draw(self.screen, self.game_title, self.button_list, self.menu_flag, self.background_color,
+                      self.transparent_color, self.default_color)
 
         pygame.quit()
-
-    def draw(self, screen):
-        screen.fill(self.background_color)
-        # Get the mouse position
-        mouse_pos = pygame.mouse.get_pos()
-        # Update button colors based on menu_flag and mouse position
-        for idx, but in enumerate(self.button_list):
-            but.color = self.transparent_color \
-                if but.rect.collidepoint(mouse_pos) or self.menu_flag == idx else self.default_color
-
-        # Draw buttons
-        self.game_title.draw(screen)
-        for but in self.button_list:
-            but.draw(screen)
-
-        pygame.display.flip()
 
     def on_mouse_button_down(self, event):
         for but in self.button_list:

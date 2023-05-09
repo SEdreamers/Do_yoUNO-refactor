@@ -1,26 +1,41 @@
 import pygame
-from engine.event import EventManager
 from models.model import Model
-class Scene(EventManager):
+from engine.event_manager import EventManager
+class Scene():
     def __init__(self):
-        super().__init__()
         self.model = Model()
-
+        self.event_manager = EventManager()
         # Subscribe event handlers
-        self.subscribe(pygame.MOUSEBUTTONDOWN, self.on_mouse_button_down)
-        self.subscribe(pygame.KEYDOWN, self.on_key_down)
+        self.event_manager.subscribe(pygame.MOUSEBUTTONDOWN, self.on_mouse_button_down)
+        self.event_manager.subscribe(pygame.KEYDOWN, self.on_key_down)
 
     def run(self, event):
         # read event and create event object
         pass
-    def draw(self, screen):
-        # Draw the scene
-        pass
+
+    def draw(self, screen, title, button_list, menu_flag, background_color, transparent_color, default_color):
+        screen.fill(background_color)
+        # Get the mouse position
+        mouse_pos = pygame.mouse.get_pos()
+        # Update button colors based on menu_flag and mouse position
+        for idx, but in enumerate(button_list[1:]):
+            but.color = transparent_color \
+                if but.rect.collidepoint(mouse_pos) or menu_flag == idx else default_color
+        # Draw buttons
+        title.draw(screen)
+        for but in button_list:
+            but.draw(screen)
+
+        pygame.display.flip()
+
     def change(self):
         # scene 바꿔주기
         pass
 
-    def on_mouse_button_down(self):
-        pass
+    def on_mouse_button_down(self, event, button_list):
+        for butt in button_list:
+            if butt.rect.collidepoint(event.pos):
+                butt.on_clicked()
+
     def on_key_down(self):
         pass
