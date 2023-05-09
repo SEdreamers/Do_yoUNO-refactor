@@ -31,3 +31,7 @@ class Card(Sprite):
     def on_clicked(self):
         # 함수 정의
         pass
+
+    # update when color_blind_mode changes
+    def update(self):
+        pass
