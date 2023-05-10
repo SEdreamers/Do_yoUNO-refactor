@@ -1,11 +1,11 @@
 import random
-from engine.sprites import Sprite
 from res.prefabs.card import Card
 
 
-class Deck(Sprite):
-    def __init__(self, model, screen, image_path,  x, y, width, height):
-        super().__init__(model, screen, image_path,  x, y, width, height)
+class Deck():
+    def __init__(self, model, screen):
+        self.model = model
+        self.screen = screen
         self.cards = self.generate_deck()
         self.shuffle()
 
@@ -20,11 +20,18 @@ class Deck(Sprite):
 
         # Add wild and wild_draw_four cards
         for _ in range(3):
-            deck.append(Card(self.model, self.screen, 'wild', 'black'))
-            deck.append(Card(self.model, self.screen, 'wild_draw2', 'black'))
-            deck.append(Card(self.model, self.screen, 'wild_draw4', 'black'))
-
+            for colorless in colorless_values:
+                deck.append(Card(self.model, self.screen, colorless, 'black'))
         return deck
 
     def shuffle(self):
         random.shuffle(self.cards)
+
+    def draw_card(self):
+        return self.cards.pop()
+
+    def play_card(self, card):
+        self.cards.insert(0, card)
+
+    def get_top_card(self):
+        return self.cards[-1]

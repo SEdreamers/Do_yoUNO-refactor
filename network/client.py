@@ -1,11 +1,13 @@
 import socket
 import json
 
+
 class Client:
-    def __init__(self, ip, port):
+    def __init__(self, ip, port, model, screen):
         self.ip = ip
         self.port = port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # self.game = GameUI(model, screen)
 
     def connect(self):
         try:

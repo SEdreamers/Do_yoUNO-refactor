@@ -1,7 +1,7 @@
 import pygame
 
 from engine.button import Button
-from gameui import GameUI
+from game.gameui import GameUI
 from scenes.story import Story
 import scenes.settings as sett
 
@@ -13,9 +13,19 @@ class SinglePlayer(Button):
         self.screen = screen
 
     def on_clicked(self):
-        game = GameUI(self.model, self.screen)
+        game = GameUI(self.model, self.screen, None, None, None, None)
         game.run()
 
+
+class MultiPlayer(Button):
+    def __init__(self, text, model, screen, x, y, width, height, font, color):
+        super().__init__(text, model, screen, x, y, width, height, font, color)
+        self.model = model
+        self.screen = screen
+
+    def on_clicked(self):
+        game = GameUI(self.model, self.screen)
+        game.run()
 
 class StoryMode(Button):
     def __init__(self, text, model, screen, x, y, width, height, font, color):

@@ -3,7 +3,7 @@ from engine.game_object import GameObject
 
 
 class Sprite(GameObject):
-    def __init__(self,  model, screen, image_path, x=0, y=0, width=0, height=0):
+    def __init__(self,  model, screen, image_path, x, y, width, height):
         super().__init__(model, x, y, width, height)
         self.screen = screen
         self.image = pygame.image.load(image_path)

@@ -9,6 +9,8 @@ class Server:
         self.port = port
         self.server.bind((ip, port))
         self.clients = []
+        # self.deck
+        # self.game
 
     def start(self):
         self.server.listen()
@@ -39,8 +41,18 @@ class Server:
         conn.close()
 
     def process_data(self, data, sender):
-        # Process the received data, update the game state, and broadcast the changes
-        pass
+        if "event_type" not in data:
+            print("Invalid message format")
+            return
+
+        print(f"Received message: {data['event_type']}")
+        self.broadcast({"type": "text", "event_type": f"From client: {data['event_type']}"}, sender)
+
+        # elif data["type"] == "game_action":
+        #     action = data["action"]
+        #     # Process the game action, update the game state, and broadcast the changes
+        #     # e.g., self.game.perform_action(action)
+        #     # self.broadcast({"type": "game_update", "state": self.game.state}, sender)
 
     def broadcast(self, data, sender=None):
         for client in self.clients:
