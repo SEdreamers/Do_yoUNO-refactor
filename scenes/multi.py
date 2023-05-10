@@ -1,6 +1,7 @@
 from engine.scene import Scene
 
-class Lobby(Scene):
+
+class Multi(Scene):
     def __init__(self, model):
         pass
     

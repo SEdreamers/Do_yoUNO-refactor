@@ -4,8 +4,8 @@ import res.prefabs.button as button
 
 
 class Settings(Scene):
-    def __init__(self, model):
-        super().__init__(model)
+    def __init__(self, model, screen):
+        super().__init__(model, screen)
         self.running = True
         self.background_color = (0, 0, 0)
         self.default_color = (255, 255, 255)
@@ -17,36 +17,36 @@ class Settings(Scene):
         center = self.screen.get_rect().centerx
         self.menu_flag = 0
         # create buttons
-        self.title = button.Button("Settings", model, center * 0.75, self.model.screen_height / 12,
+        self.title = button.Button("Settings", model, screen, center * 0.75, self.model.screen_height / 12,
                                    self.model.screen_width / 4, self.model.screen_width / 16,
                                    font, self.default_color)
-        self.blind_text = button.Blind("Color Blind Mode", model, center * 0.75, self.model.screen_height / 2.4,
+        self.blind_text = button.Blind("Color Blind Mode", model, screen, center * 0.75, self.model.screen_height / 2.4,
                                        self.model.screen_width / 4, self.model.screen_width / 16,
                                        font, self.default_color)
-        self.default_text = button.Default("Default Setting", model, self.screen, center * 0.75,
+        self.default_text = button.Default("Default Setting", model, screen, center * 0.75,
                                            self.model.screen_height / 1.714, self.model.screen_width / 4,
                                            self.model.screen_width / 16, font, self.default_color)
-        self.back_text = button.Back("Go Back", model, center * 0.75, self.model.screen_height / 1.333,
+        self.back_text = button.Back("Go Back", model, screen, center * 0.75, self.model.screen_height / 1.333,
                                      self.model.screen_width / 4, self.model.screen_width / 16,  font,
                                      self.default_color)
 
-        self.exit_text = button.Exit("Exit", model, center * 0.75, self.model.screen_height / 1.111,
+        self.exit_text = button.Exit("Exit", model, screen, center * 0.75, self.model.screen_height / 1.111,
                                      self.model.screen_width / 4, self.model.screen_width / 16, font,
                                      self.default_color)
 
-        self.size1 = button.Size("size1", model, 1,  self.screen, self.model.screen_width / 10,
+        self.size1 = button.Size("size1", model, screen, 1, self.model.screen_width / 10,
                                  self.model.screen_height / 4, self.model.screen_width / 30,
                                  self.model.screen_width / 60,  screen_font, self.default_color)
 
-        self.size2 = button.Size("size2", model, 2,  self.screen, self.model.screen_width / 3,
+        self.size2 = button.Size("size2", model, screen, 2, self.model.screen_width / 3,
                                  self.model.screen_height / 4, self.model.screen_width / 30,
                                  self.model.screen_width / 60, screen_font, self.default_color)
 
-        self.size3 = button.Size("size3", model, 3, self.screen, self.model.screen_width / 1.7,
+        self.size3 = button.Size("size3", model, screen, 3, self.model.screen_width / 1.7,
                                  self.model.screen_height / 4, self.model.screen_width / 30,
                                  self.model.screen_width / 60,  screen_font, self.default_color)
 
-        self.size4 = button.Size("size4", model, 4,  self.screen, self.model.screen_width / 1.2,
+        self.size4 = button.Size("size4", model, screen, 4, self.model.screen_width / 1.2,
                                  self.model.screen_height / 4, self.model.screen_width / 30,
                                  self.model.screen_width / 60, screen_font, self.default_color)
 
@@ -64,7 +64,7 @@ class Settings(Scene):
 
                 elif event.type == pygame.KEYDOWN:
                     self.event_manager.emit(event)
-            self.draw(self.screen, self.title, self.button_list, self.menu_flag, self.background_color,
+            self.draw(self.title, self.button_list, self.menu_flag, self.background_color,
                       self.transparent_color, self.default_color)
         pygame.quit()
 

@@ -7,17 +7,19 @@ import scenes.settings as sett
 
 
 class SinglePlayer(Button):
-    def __init__(self, text, model, x, y, width, height, font, color):
-        super().__init__(text, model, x, y, width, height, font, color)
+    def __init__(self, text, model, screen, x, y, width, height, font, color):
+        super().__init__(text, model, screen, x, y, width, height, font, color)
+        self.model = model
+        self.screen = screen
 
     def on_clicked(self):
-        game = Game()
+        game = Game(self.model, self.screen)
         game.run()
 
 
 class StoryMode(Button):
-    def __init__(self, text, model, x, y, width, height, font, color):
-        super().__init__(text, model, x, y, width, height, font, color)
+    def __init__(self, text, model, screen, x, y, width, height, font, color):
+        super().__init__(text, model, screen, x, y, width, height, font, color)
 
     def on_clicked(self):
         story = Story(self.model)
@@ -25,25 +27,25 @@ class StoryMode(Button):
 
 
 class Settings(Button):
-    def __init__(self, text, model, x, y, width, height, font, color):
-        super().__init__(text, model, x, y, width, height, font, color)
+    def __init__(self, text, model, screen, x, y, width, height, font, color):
+        super().__init__(text, model, screen, x, y, width, height, font, color)
 
     def on_clicked(self):
-        settings = sett.Settings(self.model)
+        settings = sett.Settings(self.model, self.screen)
         settings.run()
 
 
 class Exit(Button):
-    def __init__(self, text, model, x, y, width, height, font, color):
-        super().__init__(text, model, x, y, width, height, font, color)
+    def __init__(self, text, model, screen, x, y, width, height, font, color):
+        super().__init__(text, model, screen, x, y, width, height, font, color)
 
     def on_clicked(self):
         pass
 
 
 class Blind(Button):
-    def __init__(self, text, model, x, y, width, height, font, color):
-        super().__init__(text, model, x, y, width, height, font, color)
+    def __init__(self, text, model, screen, x, y, width, height, font, color):
+        super().__init__(text, model, screen, x, y, width, height, font, color)
     def on_clicked(self):
         self.model.color_blind_mode = not self.model.color_blind_mode
         self.model.save_data()
@@ -51,7 +53,7 @@ class Blind(Button):
 
 class Default(Button):
     def __init__(self, text, model, screen, x, y, width, height, font, color):
-        super().__init__(text, model, x, y, width, height, font, color)
+        super().__init__(text, model, screen,x, y, width, height, font, color)
         self.screen = screen
     def on_clicked(self):
         self.model.screen_width = 800
@@ -65,16 +67,16 @@ class Default(Button):
 
 
 class Back(Button):
-    def __init__(self, text, model, x, y, width, height, font, color):
-        super().__init__(text, model, x, y, width, height, font, color)
+    def __init__(self, text, model, screen, x, y, width, height, font, color):
+        super().__init__(text, model, screen, x, y, width, height, font, color)
 
     def on_clicked(self):
         pass
 
 
 class Size(Button):
-    def __init__(self, text, model, size, screen, x, y, width, height, font, color):
-        super().__init__(text, model, x, y, width, height, font, color)
+    def __init__(self, text, model, screen, size, x, y, width, height, font, color):
+        super().__init__(text, model, screen, x, y, width, height, font, color)
         self.size = size
         self.screen = screen
         self.size_list = [(400, 300), (600, 450), (800, 600), (1000, 750)]

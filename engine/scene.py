@@ -3,9 +3,10 @@ from engine.event_manager import EventManager
 
 
 class Scene:
-    def __init__(self, model):
+    def __init__(self, model, screen):
         pygame.init()
         self.model = model
+        self.screen = screen
         self.event_manager = EventManager()
         # Subscribe event handlers
         self.event_manager.subscribe(pygame.MOUSEBUTTONDOWN, self.on_mouse_button_down)
@@ -15,8 +16,8 @@ class Scene:
         # read event and create event object
         pass
 
-    def draw(self, screen, title, button_list, menu_flag, background_color, transparent_color, default_color):
-        screen.fill(background_color)
+    def draw(self, title, button_list, menu_flag, background_color, transparent_color, default_color):
+        self.screen.fill(background_color)
         # Get the mouse position
         mouse_pos = pygame.mouse.get_pos()
         # Update button colors based on menu_flag and mouse position
@@ -24,9 +25,9 @@ class Scene:
             but.color = transparent_color \
                 if but.rect.collidepoint(mouse_pos) or menu_flag == idx else default_color
         # Draw buttons
-        title.draw(screen)
+        title.draw(self.screen)
         for but in button_list:
-            but.draw(screen)
+            but.draw(self.screen)
 
         pygame.display.flip()
 

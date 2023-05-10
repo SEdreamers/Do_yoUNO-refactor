@@ -1,9 +1,10 @@
 from engine.game_object import GameObject
 
 class Button(GameObject):
-    def __init__(self, text, model, x, y, width, height, font, color):
+    def __init__(self, text, model, screen, x, y, width, height, font, color):
         super().__init__(model, x, y, width, height)
         self.text = text
+        self.screen = screen
         self.font = font
         self.color = color
         self.hovered = False

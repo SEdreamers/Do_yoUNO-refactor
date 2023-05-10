@@ -2,12 +2,12 @@ from engine.sprites import Sprite
 
 
 class Card(Sprite):
-    def __init__(self, model, value, color, x, y, width, height):
-        if self.model.color_blind_mode:
-            image_path = f'res/images/cards/color_blind_mode/{color}_{value}'
+    def __init__(self, model, screen, value, color):
+        if model.color_blind_mode:
+            image_path = f'res/images/cards/color_blind_mode/{color}_{value}.png'
         else:
-            image_path = f'res/images/cards/default_mode/{color}_{value}'
-        super().__init__(image_path, model, x, y, width, height)
+            image_path = f'res/images/cards/default_mode/{color}_{value}.png'
+        super().__init__(model, screen, image_path)
         self.value = value
         self.color = color
 
