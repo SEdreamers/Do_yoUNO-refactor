@@ -3,7 +3,8 @@ from engine.scene import Scene
 from engine.sprites import Sprite
 from res.prefabs.deck import Deck
 
-class Game(Scene):
+
+class GameUI(Scene):
     def __init__(self, model, screen, client=None):
         super().__init__(model, screen)
         self.client = client
