@@ -7,9 +7,9 @@ class Sprite(GameObject):
         super().__init__(model, x, y, width, height)
         self.screen = screen
         self.image = pygame.image.load(image_path)
-        self.image = pygame.transform.scale(self.image, (width, height))
+        self.image = pygame.transform.smoothscale(self.image, (width, height))
         self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
+        self.rect = (x, y)
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)

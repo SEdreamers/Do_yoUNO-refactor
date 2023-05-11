@@ -1,5 +1,4 @@
-from hand import Hand
-
+from engine.hand import Hand
 
 class Player:
     def __init__(self, name, model, screen):

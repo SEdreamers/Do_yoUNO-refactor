@@ -35,7 +35,7 @@ class Model:
 
     def save_data(self):
         data = {
-            'color_blind_mode': self.color_blind_mode,
+            'color_blind': self.color_blind_mode,
             'screen_width': self.screen_width,
             'screen_height': self.screen_height,
             'total_volume': self.total_volume,

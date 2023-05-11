@@ -23,6 +23,9 @@ class GameState:
     def reverse_direction(self):
         self.direction *= -1
 
+    def draw_card(self):
+        return self.deck.draw_card()
+
     def play_card(self, player, card):
         current_card = self.deck.get_top_card()
 

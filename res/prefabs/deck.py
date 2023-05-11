@@ -2,7 +2,7 @@ import random
 from res.prefabs.card import Card
 
 
-class Deck():
+class Deck:
     def __init__(self, model, screen):
         self.model = model
         self.screen = screen
@@ -31,7 +31,8 @@ class Deck():
         return self.cards.pop()
 
     def play_card(self, card):
-        self.cards.insert(0, card)
+        self.cards.append(card)
+        # self.cards.insert(0, card)
 
     def get_top_card(self):
         return self.cards[-1]
