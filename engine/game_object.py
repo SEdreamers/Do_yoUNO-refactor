@@ -1,4 +1,5 @@
 import pygame
+
 class GameObject():
     def __init__(self, model, x, y, width, height):
         self.model = model

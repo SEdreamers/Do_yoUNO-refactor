@@ -17,9 +17,10 @@ class SinglePlay(Play):
 
 
 class MultiPlay(Play):
-    def __init__(self, game_state, game_ui, client):
+    def __init__(self, game_state, game_ui, server, client):
         super().__init__(game_state)
         self.game_ui = game_ui
+        self.server = server
         self.client = client
 
     def play(self):

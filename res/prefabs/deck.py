@@ -28,7 +28,7 @@ class Deck:
         random.shuffle(self.cards)
 
     def draw_card(self):
-        return self.cards.pop()
+        return self.cards.pop(0)
 
     def play_card(self, card):
         self.cards.append(card)
@@ -36,3 +36,4 @@ class Deck:
 
     def get_top_card(self):
         return self.cards[-1]
+

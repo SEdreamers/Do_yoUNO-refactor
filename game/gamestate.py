@@ -4,17 +4,19 @@ from engine.player import Human, Computer
 
 class GameState:
     def __init__(self, model, screen):
+        self.model = model
+        self.screen = screen
         self.deck = Deck(model, screen)
         self.players = []
         self.current_turn = 0
         self.direction = 1  # 1 for forward, -1 for reverse
 
     def add_human_player(self, name):
-        human_player = Human(name)
+        human_player = Human(self.model, self.screen, name)
         self.players.append(human_player)
 
     def add_ai_player(self, name):
-        ai_player = Computer(name)
+        ai_player = Computer(self.model, self.screen, name)
         self.players.append(ai_player)
 
     def next_turn(self):
@@ -59,3 +61,4 @@ class GameState:
                 self.next_turn()
         else:
             print("Invalid card!")
+

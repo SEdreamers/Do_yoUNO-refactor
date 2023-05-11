@@ -18,6 +18,12 @@ class Button(GameObject):
         super().update(x, y, width, height)
         self.font = font
 
+    def set_pos(self, x, y):
+        self.rect.x = x
+        self.rect.y = y
+
+    def change_text(self, text):
+        self.text = text
 
     # Override
     def on_clicked(self):

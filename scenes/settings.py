@@ -101,6 +101,7 @@ class Settings(Scene):
             butt.update(self.model.screen_width / index, self.model.screen_height / 4,
                         self.model.screen_width / 30, self.model.screen_width / 60, screen_font)
 
+
 if __name__ == '__main__':
     main_scene = Settings()
     main_scene.run()

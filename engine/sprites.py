@@ -9,8 +9,12 @@ class Sprite(GameObject):
         self.image = pygame.image.load(image_path)
         self.image = pygame.transform.smoothscale(self.image, (width, height))
         self.rect = self.image.get_rect()
-        self.rect = (x, y)
+        self.rect.x = x
+        self.rect.y = y
 
+    def set_pos(self, x, y):
+        self.rect.x = x
+        self.rect.y = y
     def draw(self, surface):
         surface.blit(self.image, self.rect)
 
