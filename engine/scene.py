@@ -1,5 +1,5 @@
 import pygame
-from engine.event_manager import EventManager
+from engine.event import EventManager
 
 
 class Scene:
@@ -38,5 +38,5 @@ class Scene:
     def on_mouse_button_down(self, event):
         pass
 
-    def on_key_down(self):
+    def on_key_down(self, event):
         pass

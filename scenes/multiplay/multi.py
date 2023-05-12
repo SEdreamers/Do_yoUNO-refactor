@@ -2,7 +2,7 @@ import pygame
 from engine.scene import Scene
 import res.prefabs.button as button
 
-class Lobby(Scene):
+class Multi(Scene):
     def __init__(self, model, screen):
         super().__init__(model, screen)
         self.running = True
@@ -16,31 +16,22 @@ class Lobby(Scene):
         pygame.display.set_caption("Uno Game")
         center = self.screen.get_rect().centerx
         # create buttons
-        self.game_title = button.Button("Uno Game", model, screen, center * 0.75, self.model.screen_height // 12,
+        self.game_title = button.Button("Multi Play", model, screen, center * 0.75, self.model.screen_height // 12,
                                         self.model.screen_width / 4, self.model.screen_width / 16,
                                         font, self.default_color)
-        # self.single_player_button = button.SinglePlayer("Single Play", model, screen, center * 0.75,
-        #                                                 int(self.model.screen_height * 0.3),
-        #                                                 self.model.screen_width / 4, self.model.screen_width / 16,
-        #                                                 font, self.default_color)
-        self.single_player_button = button.MultiPlayer("Multi Player", model, screen, center * 0.75,
-                                                       int(self.model.screen_height * 0.3),
-                                                       self.model.screen_width / 4, self.model.screen_width / 16,
-                                                       font, self.default_color)
+        self.server_button = button.ServerPlay("Server", model, screen, center * 0.75,
+                                               int(self.model.screen_height * 0.3),
+                                               self.model.screen_width / 4, self.model.screen_width / 16,
+                                               font, self.default_color)
 
-        self.story_mode_button = button.StoryMode("Story Mode", model, screen, center * 0.75,
-                                                  int(self.model.screen_height * 0.47), self.model.screen_width / 4,
-                                                  self.model.screen_width / 16, font, self.default_color)
-
-        self.settings_button = button.Settings("Settings", model, screen, center * 0.75,
-                                               int(self.model.screen_height * 0.64), self.model.screen_width / 4,
-                                               self.model.screen_width / 16, font, self.default_color)
+        self.client_button = button.ClientPlay("Client", model, screen, center * 0.75,
+                                              int(self.model.screen_height * 0.47), self.model.screen_width / 4,
+                                              self.model.screen_width / 16, font, self.default_color)
 
         self.exit_button = button.Exit("Exit", model, screen, center * 0.75, int(self.model.screen_height * 0.81),
                                        self.model.screen_width / 4, self.model.screen_width / 16, font,
                                        self.default_color)
-        self.button_list = [self.game_title, self.single_player_button, self.story_mode_button, self.settings_button,
-                            self.exit_button]
+        self.button_list = [self.game_title, self.server_button, self.client_button, self.exit_button]
 
     def run(self):
         while self.running:
@@ -70,11 +61,10 @@ class Lobby(Scene):
             self.menu_flag += 1
         elif event.key == pygame.K_RETURN:
             self.button_list[self.menu_flag + 1].on_clicked()
-        self.menu_flag %= 4
+        self.menu_flag %= 3
 
         # Update button hovered status based on menu_flag
-        self.single_player_button.hovered = (self.menu_flag == 0)
-        self.story_mode_button.hovered = (self.menu_flag == 1)
-        self.settings_button.hovered = (self.menu_flag == 2)
-        self.exit_button.hovered = (self.menu_flag == 3)
+        self.server_button.hovered = (self.menu_flag == 0)
+        self.client_button.hovered = (self.menu_flag == 1)
+        self.exit_button.hovered = (self.menu_flag == 2)
 

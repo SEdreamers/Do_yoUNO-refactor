@@ -1,4 +1,3 @@
-import pygame
 from engine.sprites import Sprite
 
 
@@ -18,21 +17,22 @@ class Card(Sprite):
     def __repr__(self):
         return self.__str__()
 
-
     def is_playable_on(self, other_card):
         return self.color == other_card.color or self.value == other_card.value or self.is_wild()
 
     def is_wild(self):
-        return self.value == "wild" or self.value == "wild_draw_four"
+        return self.value == "wild" or self.value == "wild_draw4" or self.value == "wild_draw2"
 
     def get_action(self):
         if self.value in ["skip", "reverse", "draw2", "draw4", "wild", "wild_draw2", "wild_draw4"]:
             return self.value
         else:
             return None
-    def on_clicked(self):
-        # 함수 정의
-        pass
+
+    @classmethod
+    def from_str(cls, model, screen, data):
+        color, value = data.split('_')
+        return cls(model, screen, value, color)
 
     # update when color_blind changes
     def update_mode(self):

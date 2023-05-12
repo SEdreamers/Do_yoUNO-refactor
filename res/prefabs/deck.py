@@ -19,21 +19,34 @@ class Deck:
                [Card(self.model, self.screen, skill_value, color) for skill_value in skill_values for color in colors]
 
         # Add wild and wild_draw_four cards
-        for _ in range(3):
-            for colorless in colorless_values:
-                deck.append(Card(self.model, self.screen, colorless, 'black'))
+        # for _ in range(3):
+        #     for colorless in colorless_values:
+        #         deck.append(Card(self.model, self.screen, colorless, 'black'))
         return deck
 
     def shuffle(self):
         random.shuffle(self.cards)
 
     def draw_card(self):
-        return self.cards.pop(0)
+        return self.cards.pop(1)
 
     def play_card(self, card):
-        self.cards.append(card)
-        # self.cards.insert(0, card)
+        self.cards.insert(0, card)
 
     def get_top_card(self):
-        return self.cards[-1]
+        return self.cards[0]
 
+    def find_card(self, card_str):
+        for card in self.cards:
+            if card.__str__() == card_str:
+                return card
+        return None
+
+    def to_list(self):
+        return [card.__str__() for card in self.cards]
+
+    @classmethod
+    def from_list(cls, model, screen, data):
+        deck = cls(model, screen)
+        deck.cards = [Card.from_str(model, screen, card_data) for card_data in data]
+        return deck

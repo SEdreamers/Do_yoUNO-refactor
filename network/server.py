@@ -1,60 +1,58 @@
 import socket
 import threading
 import json
-
+from game.gamelogic import GameLogic
+from engine.player import Player
 class Server:
-    def __init__(self, ip, port):
-        self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.ip = ip
-        self.port = port
-        self.server.bind((ip, port))
+    def __init__(self, host, port, model, screen, event_manager):
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.bind((host, int(port)))
+        self.model = model
+        self.screen = screen
+        self.event_manager = event_manager
+        self.sock.listen(1)
+        self.game_logic = GameLogic(self.screen, self.model, self.event_manager)
         self.clients = []
-        # self.deck
-        # self.game
+
+    def send_game_state(self):
+        hands = []
+        for player in self.game_logic.players:
+            hand = [card.__str__() for card in player.hand]
+            hands.append(hand)
+        state = {
+            'name': [player.name for player in self.game_logic.players],
+            'deck': self.game_logic.deck.to_list(),  # Assuming your Deck class has a serialize method
+            'players': hands,
+            'turn_num': '0',
+            'direction': '1'
+        }
+        data = self.serialize_data(state)
+        self.broadcast(data)
+
+    def broadcast(self, msg):
+        for client in self.clients:
+            client.sendall(msg)
+
+    def handle_client(self, client):
+        msg = client.recv(1024)
+        msg = json.loads(msg.decode('utf-8'))
+        self.event_manager.emit_type(msg['event'], msg['card'])
+        print(msg)
+        self.broadcast(msg)
 
     def start(self):
-        self.server.listen()
-        print(f"Server is listening on {self.ip}:{self.port}")
-
+        print("Server started...")
         while True:
-            conn, addr = self.server.accept()
-            print(f"New connection from {addr}")
+            client, addr = self.sock.accept()
+            print("server_working")
+            self.clients.append(client)
+            # self.game_logic.players.append("")
+            print(client.getpeername())
 
-            self.clients.append(conn)
-            client_thread = threading.Thread(target=self.handle_client, args=(conn,))
-            client_thread.start()
+            threading.Thread(target=self.handle_client, args=(client,)).start()
 
-    def handle_client(self, conn):
-        connected = True
+    def serialize_data(self, data):
+        return json.dumps(data).encode('utf-8')
 
-        while connected:
-            try:
-                data = conn.recv(1024)
-                if data:
-                    self.process_data(json.loads(data.decode()), conn)
-                else:
-                    connected = False
-            except:
-                connected = False
-
-        self.clients.remove(conn)
-        conn.close()
-
-    def process_data(self, data, sender):
-        if "event_type" not in data:
-            print("Invalid message format")
-            return
-
-        print(f"Received message: {data['event_type']}")
-        self.broadcast({"type": "text", "event_type": f"From client: {data['event_type']}"}, sender)
-
-        # elif data["type"] == "game_action":
-        #     action = data["action"]
-        #     # Process the game action, update the game state, and broadcast the changes
-        #     # e.g., self.game.perform_action(action)
-        #     # self.broadcast({"type": "game_update", "state": self.game.state}, sender)
-
-    def broadcast(self, data, sender=None):
-        for client in self.clients:
-            if client != sender:
-                client.send(json.dumps(data).encode())
+    def deserialize_data(self, data):
+        return json.loads(data.decode('utf-8'))
